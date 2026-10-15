@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-wine: #5c0e20;
+  --color-crimson: #9b1b30;
+  --color-rose: #d9475f;
+  --color-blush: #f6c9cf;
+  --color-cream: #fbf3e6;
+  --color-paper: #f4e8d4;
+  --color-butter: #f4d58d;
+  --color-sky: #a9c8e6;
+  --color-terracotta: #d9774b;
+  --color-sage: #a8bd9b;
+  --color-gold: #c9a24a;
+  --color-cocoa: #4a2a1f;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-mono: 'Courier Prime', ui-monospace, monospace;
+  --font-hand: 'Caveat', cursive;
+}
+
+body {
+  @apply bg-cream text-cocoa font-serif antialiased;
+  overflow-x: clip;
+}
+
+/* vintage paper grain over everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility eyebrow {
+  @apply font-sans text-[0.7rem] font-medium tracking-[0.3em] uppercase;
+}
+
+/* vertical candy stripes, like a striped invitation liner */
+@utility stripes {
+  background-image: repeating-linear-gradient(90deg, var(--s1, var(--color-sky)) 0 28px, var(--s2, var(--color-cream)) 28px 56px);
+}
+@utility stripes-thin {
+  background-image: repeating-linear-gradient(90deg, var(--s1, var(--color-terracotta)) 0 10px, var(--s2, var(--color-cream)) 10px 22px, var(--s3, var(--color-sky)) 22px 32px, var(--s2, var(--color-cream)) 32px 44px);
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection { background: var(--color-blush); color: var(--color-wine); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
